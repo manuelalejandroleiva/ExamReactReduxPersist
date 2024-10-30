@@ -19,5 +19,7 @@ La validacion de los datos se realizo directamente utilizando los componentes de
    ```bash
    git clone git@github.com:manuelalejandroleiva/ExamReactReduxPersist.git
    cd tu_repositorio
-   npm install
-   npm start
+   npm install -g yarn 
+   yarn install 
+   yarn run dev
+
