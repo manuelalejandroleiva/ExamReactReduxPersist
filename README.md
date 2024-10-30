@@ -3,6 +3,7 @@
 Este proyecto es una aplicación de gestión de tareas construida con `React`, `Redux` y `Material-UI`. La aplicación permite crear, actualizar el estado de la tarea de completada a no completada , eliminar y visualizar tareas de manera eficiente. Además, la persistencia de datos se ha implementado con `Redux Persist` para garantizar que la información se mantenga a través de recargas de página.
 La validacion de los datos se realizo directamente utilizando los componentes de validacion de materialUi
 
+No fue necesario usar api pero le dejo como lo uso en los proyectos con vite , el patron que uso , todo esto usando hooks y creando context dentro de lass vistas o pantallas
 
 ## Tecnologías Utilizadas
 
