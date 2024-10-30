@@ -17,5 +17,7 @@ La validacion de los datos se realizo directamente utilizando los componentes de
 1. Clona el repositorio:
 
    ```bash
-   git clone https://github.com/tu_usuario/tu_repositorio.git
+   git clone git@github.com:manuelalejandroleiva/ExamReactReduxPersist.git
    cd tu_repositorio
+   npm install
+   npm start
