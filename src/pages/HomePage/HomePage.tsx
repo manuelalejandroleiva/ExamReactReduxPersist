@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../Store/hooks';
 import { RootState } from '../../Store/store';
 import { patchCompleted, removeTask } from '../../Store/task';
+
 import myImage from '../../assets/tasks.png'; // Ajusta la ruta según sea necesario
 
 export const HomePage = (): ReactElement => {
@@ -16,6 +17,7 @@ export const HomePage = (): ReactElement => {
   const navigate = useNavigate();
   const data = useAppSelector((state: RootState) => state.project);
   const dispatch = useAppDispatch();
+  
 
   const items = data.map((item) => ({
     id: item.id,
@@ -25,7 +27,7 @@ export const HomePage = (): ReactElement => {
   }));
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 11;
 
   const totalPages = Math.ceil(items.length / itemsPerPage);
   const currentItems = items.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
@@ -48,10 +50,13 @@ export const HomePage = (): ReactElement => {
     }
   };
 
+ 
+
   const removeTasks = (id: number) => {
+  
     const matchedObject = data.find((element) => element.id === id);
     if (matchedObject) {
-      dispatch(removeTask({ id: matchedObject.id as number }));
+        dispatch(removeTask({ id: matchedObject.id as number }));
     }
   };
 
@@ -70,16 +75,15 @@ export const HomePage = (): ReactElement => {
         <Grid item container direction="row" xs={12} wrap="wrap" style={{ paddingTop: 10 }}>
           {currentItems.length > 0 ? (
             currentItems.map((item, index) => (
-              <Grid item key={index} xs={12} sm={6} md={2} style={{ paddingTop: 20, padding: 10 }}>
+              <><Grid item key={index} xs={12} sm={6} md={2} style={{ paddingTop: 20, padding: 10 }}>
                 <MediaCard
                   name={item.name}
                   id={item.id}
                   complete={item.completed}
                   text={item.text}
                   onComplete={(id) => changeComplete(id)}
-                  onRemove={(id) => removeTasks(id)}
-                />
-              </Grid>
+                  onRemove={(id) => removeTasks(id)} />
+              </Grid></>
             ))
           ) : (
             <Grid item container xs={3} alignItems="center" justifyContent="center">
@@ -87,6 +91,7 @@ export const HomePage = (): ReactElement => {
             </Grid>
           )}
         </Grid>
+        
 
         <Grid item container direction="row" alignItems="center" justifyContent="space-between">
           <Grid item>
@@ -112,6 +117,8 @@ export const HomePage = (): ReactElement => {
           </Grid>
         </Grid>
       </Box>
+
+     
     </Grid>
   );
 

@@ -7,6 +7,11 @@ import Typography from '@mui/material/Typography';
 import { Grid } from '@material-ui/core';
 import { IconButton } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+
+import DialogTitle from '@mui/material/DialogTitle';
+import { useState } from 'react';
 
 interface Props {
     id: number,
@@ -20,8 +25,23 @@ interface Props {
 
 export default function MediaCard({ id, name, text, onComplete, complete, onRemove }: Props) {
 
+    const [state, setState] = useState<boolean>(false)
+
     const completeAction = () => {
         onComplete && onComplete(id)
+    }
+
+
+    const handleOpenModal = () => {
+        setState(true)
+        if (state)
+            onRemoveAction()
+
+    }
+
+    const handleNoResponse = () => {
+        setState(false)
+
     }
 
     const onRemoveAction = () => {
@@ -52,11 +72,34 @@ export default function MediaCard({ id, name, text, onComplete, complete, onRemo
                 }
 
 
-                <Button size="small" onClick={onRemoveAction}>Remove </Button>
+                <Button size="small" onClick={handleOpenModal}>Remove </Button>
 
 
 
             </CardActions>
+
+
+            <Dialog
+                open={state}
+
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    {"Estas seguro de que quieres eliminar esta tarea"}
+                </DialogTitle>
+
+                <DialogActions>
+                    <Button onClick={handleNoResponse}>No</Button>
+                    <Button onClick={onRemoveAction} autoFocus>
+                        Yes
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Card>
+
+
+
+
     );
 }
