@@ -46,6 +46,8 @@ export default function MediaCard({ id, name, text, onComplete, complete, onRemo
 
     const onRemoveAction = () => {
         onRemove && onRemove(id)
+        setState(!state)
+
     }
 
     return (
